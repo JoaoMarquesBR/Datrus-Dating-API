@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Datrus_Infrastructure</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Datrus-Application\Datrus-Application.csproj" />
+    <ProjectReference Include="..\Datrus-Domain\Datrus-Domain.csproj" />
+  </ItemGroup>
+
+</Project>
