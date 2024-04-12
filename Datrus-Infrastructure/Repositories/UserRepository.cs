@@ -1,4 +1,5 @@
-﻿using Datrus_Application.IRepositories;
+﻿using Castle.Components.DictionaryAdapter.Xml;
+using Datrus_Application.IRepositories;
 using Datrus_Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -62,6 +63,11 @@ namespace Datrus_Infrastructure.Repositories
             {
                 return null;
             }
+        }
+
+        public async Task<IEnumerable<User>> GetUserByPreference(UserPreferences pref)
+        {
+            return await _db.Users.Where(x => pref.Gender.Equals(pref.Gender) && x.Age >= pref.MinAge && x.Age <= pref.MaxAge).ToListAsync();
         }
     }
 }

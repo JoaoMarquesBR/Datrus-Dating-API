@@ -89,7 +89,7 @@ namespace Datrus_Application.Services
 
         }
 
-     
+
 
         public async Task SetImageSrc(SetImageRequest req)
         {
@@ -110,7 +110,7 @@ namespace Datrus_Application.Services
 
                 await _userRepo.Update(user);
             }
-            
+
         }
 
         public async Task SetPreferences(SetPreferencesRequest req)
@@ -120,8 +120,8 @@ namespace Datrus_Application.Services
             userPref.Language = req.language;
             userPref.MinAge = req.minAge;
             userPref.MaxAge = req.maxAge;
-            userPref.ClientId = req.clientId;   
-            
+            userPref.ClientId = req.clientId;
+
             UserPreferences? existingPreference =  await _preferences.GetByClientId(userPref.ClientId);
 
             if (existingPreference == null)
@@ -151,5 +151,23 @@ namespace Datrus_Application.Services
 
             return fileName;
         }
+
+        public async Task<IEnumerable<User>> GetUsersToLike(GetProfilesRequest req)
+        {
+            UserPreferences pref = await _preferences.GetByClientId(req.clientId);
+
+            if (pref == null)
+            {
+                //IEnumerable<User> usersToLike = await _userRepo.GetUserByPreference(pref);
+
+                return null;
+                //return usersToLike;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
+
 }
