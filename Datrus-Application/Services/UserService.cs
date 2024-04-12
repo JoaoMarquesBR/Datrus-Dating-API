@@ -174,7 +174,7 @@ namespace Datrus_Application.Services
         {
             User user = await _userRepo.GetByEmail(req.email);
 
-            if (user.Password.Equals(req))
+            if (user.Password.Equals(req.password))
             {
                 return user;
             }
