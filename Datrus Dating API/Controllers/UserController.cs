@@ -37,7 +37,8 @@ namespace Datrus_Dating_API.Controllers
             User guest = new User();
             guest.FirstName = req.firstName;
             guest.LastName = req.lastName;
-            guest .Email = req.email;  
+            guest .Email = req.email;
+            guest.Password = req.password;
             guest.Username= req.username;
             guest.Gender = req.gender;
             guest.Age = req.age;
@@ -48,6 +49,15 @@ namespace Datrus_Dating_API.Controllers
 
             await _userService.Add(guest);
         }
+
+        [HttpPost("Login")]
+        public async Task<User> Login(LoginRequest req)
+        {
+            return await _userService.Login(req);
+
+        }
+
+
 
         [HttpPost("SendLike")]
         public async Task SendLike(SendLikeRequest req)

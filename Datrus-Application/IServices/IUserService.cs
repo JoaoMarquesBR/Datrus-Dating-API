@@ -15,5 +15,7 @@ namespace Datrus_Application.IServices
         Task SetImageSrc(SetImageRequest req);
 
         Task<IEnumerable<User>> GetUsersToLike(GetProfilesRequest req);
+
+        Task<User> Login(LoginRequest req);
     }
 }
