@@ -1,4 +1,5 @@
-﻿using Datrus_Application.IServices;
+﻿using Datrus_Application.IRepositories;
+using Datrus_Application.IServices;
 using Datrus_Contracts.Requests;
 using Datrus_Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,23 @@ namespace Datrus_Dating_API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IMatchRepository _matchRepository;
 
-        public UserController(IUserService guestService) {
+        public UserController(IUserService guestService,IMatchRepository _matchRepo) {
             _userService = guestService;
+            _matchRepository = _matchRepo;
         }
 
         [HttpGet("GetAll")]
         public async Task<IEnumerable<User>> GetAll()
         {
             return await _userService.GetAll();
+        }
+
+        [HttpGet("GetMatches")]
+        public async Task<IEnumerable<UsersMatch>> GetMatches(string clientId)
+        {
+            return await _matchRepository.GetByClientId(clientId);
         }
 
 

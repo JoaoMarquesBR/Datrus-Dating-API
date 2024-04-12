@@ -1,5 +1,6 @@
 ﻿using Datrus_Application.IRepositories;
 using Datrus_Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,11 @@ namespace Datrus_Infrastructure.Repositories
         public Task<IEnumerable<UsersMatch>> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<UsersMatch>> GetByClientId(object clientId)
+        {
+            return await _db.UsersMatches.Where(x => x.UserA.Equals(clientId)).ToListAsync(); ;
         }
 
         public Task<UsersMatch> GetById(object id)
