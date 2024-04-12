@@ -156,11 +156,11 @@ namespace Datrus_Application.Services
         {
             UserPreferences pref = await _preferences.GetByClientId(req.clientId);
 
-            if (pref == null)
+            if (pref != null)
             {
-                //IEnumerable<User> usersToLike = await _userRepo.GetUserByPreference(pref);
+                IEnumerable<User> usersToLike = await _userRepo.GetUserByPreference(pref);
 
-                return null;
+                return usersToLike;
                 //return usersToLike;
             }
             else

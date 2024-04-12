@@ -67,7 +67,15 @@ namespace Datrus_Infrastructure.Repositories
 
         public async Task<IEnumerable<User>> GetUserByPreference(UserPreferences pref)
         {
-            return await _db.Users.Where(x => pref.Gender.Equals(pref.Gender) && x.Age >= pref.MinAge && x.Age <= pref.MaxAge).ToListAsync();
+            List<User> test = await _db.Users.Where(x=>x.Age >= pref.MinAge && x.Age<= pref.MaxAge).ToListAsync();
+
+
+
+            List<User> filteredList = test.Where(x => string.Equals(x.Gender, pref.Gender, StringComparison.OrdinalIgnoreCase)).ToList();
+
+
+
+            return filteredList;
         }
     }
 }

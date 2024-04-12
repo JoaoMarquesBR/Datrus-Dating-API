@@ -22,6 +22,15 @@ namespace Datrus_Dating_API.Controllers
             return await _userService.GetAll();
         }
 
+
+        [HttpGet("GetProfiles")]
+        public async Task<IEnumerable<User>> GetProfiles(string clientId)
+        {
+            IEnumerable<User> usersToLike = await _userService.GetUsersToLike(new GetProfilesRequest(clientId));
+
+            return usersToLike;
+        }
+
         [HttpPost("Add")]
         public async Task Add(AddUserRequest req)
         {
