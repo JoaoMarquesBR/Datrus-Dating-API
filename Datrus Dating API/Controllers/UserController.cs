@@ -43,6 +43,7 @@ namespace Datrus_Dating_API.Controllers
             guest.Age = req.age;
             guest.Religion = req.religion;
             guest.FirstLanguage = req.firstLanguage;
+            guest.ImageSrc = "";
 
 
             await _userService.Add(guest);
