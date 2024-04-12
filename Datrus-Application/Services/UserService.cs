@@ -77,6 +77,13 @@ namespace Datrus_Application.Services
                 match.UserB = req.senderId;
 
                 await _matchRepo.Add(match);
+
+                //now we add in reverse so both users have match on their end!
+                UsersMatch matchReverse = new UsersMatch();
+                matchReverse.Date = DateTime.UtcNow;
+                matchReverse.UserA = req.senderId;
+                matchReverse.UserB = req.receiverId;
+                await _matchRepo.Add(matchReverse);
             }
             else
             {

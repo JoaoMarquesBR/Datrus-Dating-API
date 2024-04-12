@@ -9,6 +9,6 @@ namespace Datrus_Application.IRepositories
 {
     public interface IMatchRepository : IGenericRepository<UsersMatch>
     {
-
+        Task<IEnumerable<UsersMatch>> GetByClientId(object clientId);
     }
 }
