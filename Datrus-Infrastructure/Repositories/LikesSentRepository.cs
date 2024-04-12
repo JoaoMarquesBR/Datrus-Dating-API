@@ -59,5 +59,11 @@ namespace Datrus_Infrastructure.Repositories
             }
 
         }
+
+        public async Task<IEnumerable<LikesSent>> GetLikesSentByClientId(object clientId)
+        {
+            return await _db.LikesSent.Where(x => x.FromClientId.Equals(clientId)).ToListAsync();
+        }
+
     }
 }

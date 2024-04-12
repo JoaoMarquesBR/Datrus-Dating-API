@@ -12,5 +12,6 @@ namespace Datrus_Application.IRepositories
 
         Task<bool> WasLikeAlreadySent(string fromUserA, string toUserB);
 
+        Task<IEnumerable<LikesSent>> GetLikesSentByClientId(object clientId);
     }
 }

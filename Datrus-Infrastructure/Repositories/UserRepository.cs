@@ -65,17 +65,21 @@ namespace Datrus_Infrastructure.Repositories
             }
         }
 
-        public async Task<IEnumerable<User>> GetUserByPreference(UserPreferences pref)
+        public async Task<IEnumerable<User>> GetUserByPreference(UserPreferences pref, IEnumerable<LikesSent>likesSent)
         {
-            List<User> test = await _db.Users.Where(x=>x.Age >= pref.MinAge && x.Age<= pref.MaxAge).ToListAsync();
+            //get all the users that meet his criteria
+            IEnumerable<User> test = await _db.Users.Where(x=>x.Age >= pref.MinAge && x.Age<= pref.MaxAge).ToListAsync();
 
+            //get all likes user already sent (so they dont appear again)
+            IEnumerable<LikesSent> likesSentByUser = likesSent;
+            IEnumerable<string> clientsId = likesSentByUser.Select(x => x.ToClientId);
 
+            //filtering likes already sent 
+            IEnumerable<User> filteredList = test.Where(x => string.Equals(x.Gender, pref.Gender, StringComparison.OrdinalIgnoreCase)).ToList();
+            
+            IEnumerable<User> finalList = filteredList.Where(x => !clientsId.Contains(x.ClientId));
 
-            List<User> filteredList = test.Where(x => string.Equals(x.Gender, pref.Gender, StringComparison.OrdinalIgnoreCase)).ToList();
-
-
-
-            return filteredList;
+            return finalList;
         }
     }
 }
