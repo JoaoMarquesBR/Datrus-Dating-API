@@ -4,6 +4,7 @@ using Datrus_Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Datrus_Domain.Migrations
 {
     [DbContext(typeof(DatusDatingDb))]
-    partial class DatusDatingDbModelSnapshot : ModelSnapshot
+    [Migration("20240412145925_setPreferences")]
+    partial class setPreferences
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,7 +89,7 @@ namespace Datrus_Domain.Migrations
 
             modelBuilder.Entity("Datrus_Domain.Entities.UserPreferences", b =>
                 {
-                    b.Property<string>("UserPreferenceId")
+                    b.Property<string>("MatchId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
@@ -112,7 +115,7 @@ namespace Datrus_Domain.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("int");
 
-                    b.HasKey("UserPreferenceId");
+                    b.HasKey("MatchId");
 
                     b.ToTable("UsersPreferences");
                 });

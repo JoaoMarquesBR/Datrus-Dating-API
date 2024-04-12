@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Datrus-Contracts\Datrus-Contracts.csproj" />
     <ProjectReference Include="..\Datrus-Domain\Datrus-Domain.csproj" />
   </ItemGroup>
 

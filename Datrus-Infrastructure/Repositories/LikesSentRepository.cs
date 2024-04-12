@@ -41,6 +41,10 @@ namespace Datrus_Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<LikesSent> Update(LikesSent entity)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<bool> WasLikeAlreadySent(string fromUserA, string toUserB) { 
             var obj = await _db.LikesSent.FirstOrDefaultAsync(x => x.FromClientId.Equals( fromUserA )&& x.ToClientId.Equals(toUserB));

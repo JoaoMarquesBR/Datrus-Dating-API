@@ -1,5 +1,6 @@
 ﻿using Datrus_Application.IRepositories;
 using Datrus_Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +31,17 @@ namespace Datrus_Infrastructure.Repositories
             }
         }
 
-        public Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _db.Users.ToListAsync();
         }
 
-        public Task<User> GetById(object id)
+        public async Task<User> GetById(object id)
+        {
+            return await _db.Users.FirstOrDefaultAsync(x => x.ClientId.Equals(id));
+        }
+
+        public Task<User> Update(User entity)
         {
             throw new NotImplementedException();
         }

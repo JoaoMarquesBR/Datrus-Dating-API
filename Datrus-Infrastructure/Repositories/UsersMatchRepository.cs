@@ -40,5 +40,9 @@ namespace Datrus_Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<UsersMatch> Update(UsersMatch entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

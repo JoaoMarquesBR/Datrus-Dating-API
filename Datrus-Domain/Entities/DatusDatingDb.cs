@@ -19,4 +19,6 @@ public partial class DatusDatingDb : DbContext
 
     public virtual DbSet<LikesSent> LikesSent { get; set; }
 
+    public virtual DbSet<UserPreferences> UsersPreferences{ get; set; }
+
 }

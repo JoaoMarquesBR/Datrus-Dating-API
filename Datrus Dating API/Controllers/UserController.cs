@@ -1,4 +1,5 @@
 ﻿using Datrus_Application.IServices;
+using Datrus_Contracts.Requests;
 using Datrus_Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Datrus_Dating_API.Controllers
 {
     [ApiController]
-    [Route("/Guest")]
+    [Route("/User")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -30,7 +31,6 @@ namespace Datrus_Dating_API.Controllers
             guest .Email = req.Email;  
             guest.Username= req.Username;
             guest.Gender = req.Gender;
-           
 
             await _userService.Add(guest);
         }
@@ -40,6 +40,12 @@ namespace Datrus_Dating_API.Controllers
         {
 
             await _userService.SendLike(senderId,receiverId);
+        }
+
+        [HttpPost("SetPreferences")]
+        public async Task SetPreferences(SetPreferencesRequest req)
+        {
+            await _userService.SetPreferences(req);
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using Datrus_Domain.Entities;
+﻿using Datrus_Contracts.Requests;
+using Datrus_Domain.Entities;
 
 namespace Datrus_Application.IServices
 {
@@ -6,7 +7,9 @@ namespace Datrus_Application.IServices
     {
         Task Match(User userSender, User userReceiver);
 
-        Task SendLike(string senderId, string receiverId);
+        Task SendLike(SendLikeRequest req);
+
+        Task SetPreferences(SetPreferencesRequest req);
 
     }
 }

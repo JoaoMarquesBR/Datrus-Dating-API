@@ -33,6 +33,7 @@ namespace Datrus_Dating_API
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IMatchRepository, UsersMatchRepository>();
             builder.Services.AddScoped<ILikesSentRepository, LikesSentRepository>();
+            builder.Services.AddScoped<IUsersPreference, UsersPreferenceRepository>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -50,6 +51,7 @@ namespace Datrus_Dating_API
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseCors();
 
 
             app.MapControllers();
