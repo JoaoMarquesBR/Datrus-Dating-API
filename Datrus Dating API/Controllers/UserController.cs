@@ -39,6 +39,14 @@ namespace Datrus_Dating_API.Controllers
             await _userService.Add(guest);
         }
 
+        //[HttpGet("GetProfiles")]
+        //public async Task<IEnumerable<User>> GetProfiles(GetProfilesToLikeRequest req)
+        //{
+        //    IEnumerable<User> usersToLike = await _userService.GetUsersToLike(req);
+
+        //    return usersToLike;
+        //}
+
         [HttpPost("SendLike")]
         public async Task SendLike(SendLikeRequest req)
         {
@@ -69,5 +77,7 @@ namespace Datrus_Dating_API.Controllers
             return Ok(new { message = "success" });
 
         }
+
+
     }
 }

@@ -41,6 +41,11 @@ namespace Datrus_Infrastructure.Repositories
             return await _db.Users.FirstOrDefaultAsync(x => x.ClientId.Equals(id));
         }
 
+        //public async Task<IEnumerable<User>> GetUsersByPreference(UserPreferences pref)
+        //{
+        //    return await _db.Users.Where(x=> pref.Gender.Equals(pref.Gender) && x.Age >= pref.MinAge && x.Age <= pref.MaxAge).ToListAsync();
+        //}
+
         public async Task<User> Update(User entity)
         {
             try

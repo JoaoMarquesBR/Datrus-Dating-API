@@ -9,6 +9,7 @@ namespace Datrus_Application.IRepositories
 {
     public interface IUserRepository : IGenericRepository<User>
     {
+        Task<IEnumerable<User>> GetUsersByPreference(UserPreferences req);
 
     }
 }

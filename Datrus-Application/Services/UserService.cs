@@ -136,6 +136,22 @@ namespace Datrus_Application.Services
 
         }
 
+        //public async Task<IEnumerable<User>> GetUsersToLike(GetProfilesToLikeRequest req)
+        //{
+        //    UserPreferences pref = await _preferences.GetByClientId(req.clientId);
+
+        //    if (pref == null)
+        //    {
+        //        IEnumerable<User> usersToLike = await _userRepo.GetUsersByPreference(pref);
+
+        //        return usersToLike;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+
 
         //helpers
         private static string GetFileName(IFormFile file)
