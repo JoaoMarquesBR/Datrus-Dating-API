@@ -158,7 +158,8 @@ namespace Datrus_Application.Services
 
             if (pref != null)
             {
-                IEnumerable<User> usersToLike = await _userRepo.GetUserByPreference(pref);
+                IEnumerable<LikesSent>likesSent = await _likesSentRepo.GetLikesSentByClientId(req.clientId);
+                IEnumerable<User> usersToLike = await _userRepo.GetUserByPreference(pref, likesSent);
 
                 return usersToLike;
                 //return usersToLike;

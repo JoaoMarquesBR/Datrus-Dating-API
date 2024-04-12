@@ -9,7 +9,7 @@ namespace Datrus_Application.IRepositories
 {
     public interface IUserRepository : IGenericRepository<User>
     {
-        Task<IEnumerable<User>> GetUserByPreference(UserPreferences pref);
+        Task<IEnumerable<User>> GetUserByPreference(UserPreferences pref, IEnumerable<LikesSent> likesSent);
 
     }
 }

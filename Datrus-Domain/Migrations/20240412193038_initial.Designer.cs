@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Datrus_Domain.Migrations
 {
     [DbContext(typeof(DatusDatingDb))]
-    [Migration("20240411225936_addMatches2")]
-    partial class addMatches2
+    [Migration("20240412193038_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,15 @@ namespace Datrus_Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("FirstLanguage")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
@@ -72,10 +80,20 @@ namespace Datrus_Domain.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("ImageSrc")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Religion")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -85,6 +103,39 @@ namespace Datrus_Domain.Migrations
                     b.HasKey("ClientId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Datrus_Domain.Entities.UserPreferences", b =>
+                {
+                    b.Property<string>("UserPreferenceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("MaxAge")
+                        .HasMaxLength(50)
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinAge")
+                        .HasMaxLength(50)
+                        .HasColumnType("int");
+
+                    b.HasKey("UserPreferenceId");
+
+                    b.ToTable("UsersPreferences");
                 });
 
             modelBuilder.Entity("Datrus_Domain.Entities.UsersMatch", b =>
