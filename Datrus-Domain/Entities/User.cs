@@ -21,6 +21,10 @@ namespace Datrus_Domain.Entities
         public string LastName { get; set; }
 
         [Required]
+        [StringLength(250)]
+        public string Password { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string Gender { get; set; }
 

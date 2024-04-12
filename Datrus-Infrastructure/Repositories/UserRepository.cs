@@ -81,5 +81,10 @@ namespace Datrus_Infrastructure.Repositories
 
             return finalList;
         }
+
+        public async Task<User> GetByEmail(string email)
+        {
+            return await _db.Users.FirstOrDefaultAsync(x => x.Email.Equals(email));
+        }
     }
 }

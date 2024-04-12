@@ -169,6 +169,21 @@ namespace Datrus_Application.Services
                 return null;
             }
         }
+
+        public async Task<User> Login(LoginRequest req)
+        {
+            User user = await _userRepo.GetByEmail(req.email);
+
+            if (user.Password.Equals(req))
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
     }
 
 }

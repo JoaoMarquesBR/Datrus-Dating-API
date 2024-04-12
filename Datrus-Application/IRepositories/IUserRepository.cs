@@ -1,4 +1,5 @@
-﻿using Datrus_Domain.Entities;
+﻿using Datrus_Contracts.Requests;
+using Datrus_Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace Datrus_Application.IRepositories
     {
         Task<IEnumerable<User>> GetUserByPreference(UserPreferences pref, IEnumerable<LikesSent> likesSent);
 
+        Task<User> GetByEmail(string email);
     }
 }
