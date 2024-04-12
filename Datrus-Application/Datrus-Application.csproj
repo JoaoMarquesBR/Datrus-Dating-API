@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Datrus-Contracts\Datrus-Contracts.csproj" />
+	  <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.1.1" />
+	  <ProjectReference Include="..\Datrus-Contracts\Datrus-Contracts.csproj" />
     <ProjectReference Include="..\Datrus-Domain\Datrus-Domain.csproj" />
   </ItemGroup>
 

@@ -23,14 +23,18 @@ namespace Datrus_Dating_API.Controllers
         }
 
         [HttpPost("Add")]
-        public async Task Add(User req)
+        public async Task Add(AddUserRequest req)
         {
             User guest = new User();
-            guest.FirstName = req.FirstName;
-            guest.LastName = req.LastName;
-            guest .Email = req.Email;  
-            guest.Username= req.Username;
-            guest.Gender = req.Gender;
+            guest.FirstName = req.firstName;
+            guest.LastName = req.lastName;
+            guest .Email = req.email;  
+            guest.Username= req.username;
+            guest.Gender = req.gender;
+            guest.Age = req.age;
+            guest.Religion = req.religion;
+            guest.FirstLanguage = req.firstLanguage;
+
 
             await _userService.Add(guest);
         }
@@ -48,5 +52,22 @@ namespace Datrus_Dating_API.Controllers
             await _userService.SetPreferences(req);
         }
 
+        [HttpPut("Image/upload")]
+        public async Task<IActionResult> updateImage(string  clientId,IFormFile file)
+        {
+            if (file == null)
+                return BadRequest(new { message = "File is required." });
+
+            string[] supportedContentTypes = { "image/jpeg", "image/svg", "image/jpg", "image/png", "image/gif" };
+
+            if (!supportedContentTypes.Contains(file.ContentType))
+                return null;
+
+
+            await _userService.SetImageSrc(new SetImageRequest(clientId, file));
+
+            return Ok(new { message = "success" });
+
+        }
     }
 }

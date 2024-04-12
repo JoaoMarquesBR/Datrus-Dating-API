@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Datrus_Contracts.Requests
 {
-    public record AddUserRequest(string username, string firstName, string lastName, string email,string gender);
+    public record AddUserRequest(string username, string firstName,int age, string religion, string firstLanguage, string lastName, string email,string gender);
 }

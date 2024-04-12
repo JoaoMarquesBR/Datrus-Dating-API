@@ -1,5 +1,6 @@
 ﻿using Datrus_Contracts.Requests;
 using Datrus_Domain.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace Datrus_Application.IServices
 {
@@ -10,6 +11,8 @@ namespace Datrus_Application.IServices
         Task SendLike(SendLikeRequest req);
 
         Task SetPreferences(SetPreferencesRequest req);
+
+        Task SetImageSrc(SetImageRequest req);
 
     }
 }

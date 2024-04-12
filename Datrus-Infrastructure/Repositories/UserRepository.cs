@@ -41,9 +41,27 @@ namespace Datrus_Infrastructure.Repositories
             return await _db.Users.FirstOrDefaultAsync(x => x.ClientId.Equals(id));
         }
 
-        public Task<User> Update(User entity)
+        public async Task<User> Update(User entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User existingEntity = await GetById(entity.ClientId);
+
+                if (existingEntity != null)
+                {
+                    _db.Entry(existingEntity).CurrentValues.SetValues(entity);
+                    await _db.SaveChangesAsync();
+                    return existingEntity;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

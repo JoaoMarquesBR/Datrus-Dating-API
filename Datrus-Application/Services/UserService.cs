@@ -2,6 +2,7 @@
 using Datrus_Application.IServices;
 using Datrus_Contracts.Requests;
 using Datrus_Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,30 @@ namespace Datrus_Application.Services
 
         }
 
+     
+
+        public async Task SetImageSrc(SetImageRequest req)
+        {
+            User? user = await _userRepo.GetById(req.clientId);
+
+            if (user != null)
+            {
+                string fileName = GetFileName(req.file);
+                user.ImageSrc = fileName;
+
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "Images/ClientImages", fileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await req.file.CopyToAsync(stream);
+                }
+
+
+                await _userRepo.Update(user);
+            }
+            
+        }
+
         public async Task SetPreferences(SetPreferencesRequest req)
         {
             UserPreferences userPref = new UserPreferences();
@@ -109,6 +134,22 @@ namespace Datrus_Application.Services
                 await _preferences.Update(userPref);
             }
 
+        }
+
+
+        //helpers
+        private static string GetFileName(IFormFile file)
+        {
+            var extension = Path.GetExtension(file.FileName);
+            var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            var maxFileNameLength = 50 - extension.Length;
+            var baseFileName = $"image_{timestamp}";
+
+            var fileName = baseFileName.Length > maxFileNameLength
+                            ? $"{baseFileName.Substring(0, maxFileNameLength)}{extension}"
+                            : $"{baseFileName}{extension}";
+
+            return fileName;
         }
     }
 }
