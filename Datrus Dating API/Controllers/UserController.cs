@@ -36,10 +36,10 @@ namespace Datrus_Dating_API.Controllers
         }
 
         [HttpPost("SendLike")]
-        public async Task SendLike(string senderId, string receiverId)
+        public async Task SendLike(SendLikeRequest req)
         {
 
-            await _userService.SendLike(senderId,receiverId);
+            await _userService.SendLike(req);
         }
 
         [HttpPost("SetPreferences")]

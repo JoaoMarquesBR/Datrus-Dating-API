@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Datrus_Contracts.Requests
 {
-    public record SendLikeRequest(string senderId,string receiverId)
+    public record SendLikeRequest(string senderId,string receiverId);
 }
